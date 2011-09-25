@@ -31,6 +31,10 @@ function validate2()
 	if(!checkOccupation())
 		message += "Occupation\n";
 	message += " ";
+	
+	if(!checkStatus())
+		message += "Status\n";
+	message += " ";
 
 	if(message == "Please enter:\n\n ")
 		return true;
@@ -82,4 +86,19 @@ function checkOccupation()
 		return true;
 	}
 
+}
+
+function checkStatus()
+{
+	if(document.regist.status.selectedIndex == 0) 
+	{
+		document.getElementById("status").style.width = "10%"
+		document.getElementById("status").style.border = "2px solid red"
+		return false;
+	} else 
+	{
+		document.getElementById("status").style.border = "none"
+		return true;
+	}
+	
 }

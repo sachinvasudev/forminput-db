@@ -38,7 +38,18 @@
 			</p>
 			
 			<textarea name="address" rows="5" cols="25"></textarea>
-
+			
+			<p id="status" class="toptext">
+				Status
+			</p>
+			
+			<select name="status">
+				<option value="">-Select-</option>
+				<option value="1">Active</option>
+				<option value="2">Inactie</option>
+			</select>
+			
+			<br/>
 			<br/>
 
 			<input type="reset" value"Reset" name="reset"/>
