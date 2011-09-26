@@ -168,9 +168,16 @@ while($row =mysql_fetch_assoc($result))
 			</tr>
 			<?php
 }
+mysql_close($con);
 ?>
 			
 		</table>
+		
+	</br>
+	
+	<a href="edit.php">
+		<input type="button" name="button" value="Edit"/>
+	</a>
 
 	</body>
 	

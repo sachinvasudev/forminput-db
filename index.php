@@ -46,7 +46,7 @@
 			<select name="status">
 				<option value="">-Select-</option>
 				<option value="1">Active</option>
-				<option value="2">Inactie</option>
+				<option value="2">Inactive</option>
 			</select>
 			
 			<br/>
@@ -62,7 +62,7 @@
 			if (isset($_POST['submit'])) 
 			
 			{
-				$name=addslashes($_POST['Name']);
+				$name=addslashes(htmlspecialchars($_POST['Name']));
 				$age=$_POST['Age'];
 				$occpn=addslashes($_POST['occupation']);
 				$addrs=addslashes((nl2br(htmlspecialchars($_POST['address']))));
