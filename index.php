@@ -30,11 +30,11 @@
 				
 				<tr>
 					<td>
-					<p id="occupation" class="toptext">
+					<p  class="toptext">
 				Occupation
 			</p></td>
 					<td>
-					<select name="occupation">
+					<select id="occupation" name="occupation">
 				<option value="">-Select-</option>
 				<option value="Doctor">Doctor</option>
 				<option value="Engineer">Engineer</option>
@@ -47,26 +47,26 @@
 				
 				<tr>
 					<td>
-						<p id="address" class="toptext">
+						<p  class="toptext">
 						Address
 						</p>
 				</td>
 				
 				
 				<td>
-					<textarea name="address" rows="5" cols="25"></textarea>
+					<textarea id="address" name="address" rows="5" cols="25"></textarea>
 					
 				</td>
 				
 				<tr>
 					<td>
-						<p id="status" class="toptext">
+						<p  class="toptext">
 							Status
 						</p>
 					</td>
 							
 					<td>
-						<select name="status">
+						<select id="status" name="status">
 							<option value="">-Select-</option>
 							<option value="1">Active</option>
 							<option value="2">Inactive</option>
@@ -77,13 +77,11 @@
 				
 				<tr>
 					
-					<td>
+					<td colspan="2" style="text-align: center">
 						<input type="reset" value"Reset" name="reset"/>
-					</td>
-					
-					<td>
 						<input type="submit" value="Submit" name="submit"/>
 					</td>
+					
 					
 				</tr>
 			

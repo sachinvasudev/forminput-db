@@ -67,7 +67,7 @@ function checkAddress()
 	} else 
 	{
 
-		document.getElementById("address").style.border = "none"
+		document.getElementById("address").style.border = "";
 		return true;
 		;
 
@@ -84,7 +84,7 @@ function checkOccupation()
 		return false;
 	} else 
 	{
-		document.getElementById("occupation").style.border = "none"
+		document.getElementById("occupation").style.border = ""
 		return true;
 	}
 
@@ -99,7 +99,7 @@ function checkStatus()
 		return false;
 	} else 
 	{
-		document.getElementById("status").style.border = "none"
+		document.getElementById("status").style.border = ""
 		return true;
 	}
 	

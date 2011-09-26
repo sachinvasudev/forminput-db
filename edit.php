@@ -12,11 +12,11 @@ if(isset($_POST['edit']))
 	
 	for($i=0;$i<$rows;$i++)
 	{
-	 $name= $_POST['name'][$i];
-	 $age = $_POST['age'][$i];
-	 $occupation = $_POST['occupation'][$i];
-	 $address = $_POST['address'][$i];
-	 $status = $_POST['status'][$i];
+	 $name= addslashes(htmlspecialchars($_POST['name'][$i]));
+	 $age = addslashes(htmlspecialchars($_POST['age'][$i]));
+	 $occupation = addslashes(htmlspecialchars($_POST['occupation'][$i]));
+	 $address = addslashes(htmlspecialchars($_POST['address'][$i]));
+	 $status = addslashes(htmlspecialchars($_POST['status'][$i]));
 	 $id = $_POST['id'][$i];
 
 	
@@ -109,7 +109,9 @@ $statuss = array("Active","Inactive");
 $con = mysql_connect("localhost","root","") or die('Could not connect to db');
 $db = mysql_select_db("form") or die('Could not select databse');
 $query = "SELECT * 
-FROM employee";
+FROM employee
+ORDER BY id
+";
 
 $result = mysql_query($query) or die("Error running query");
 $rows = mysql_num_rows($result);
@@ -182,7 +184,7 @@ mysql_close($con);
 			
 		</table>
 			<input type="hidden"  name="rows" value="<?php echo $rows;?>"/>	
-		<input type="submit" name="edit" />
+		<input type="submit" name="edit" value="Submit" />
 			</form>
 
 	</body>
