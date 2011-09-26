@@ -61,7 +61,7 @@ function checkAddress()
 
 	if(document.regist.address.value == "") 
 	{
-		document.getElementById("address").style.width = "10%";
+		//document.getElementById("address").style.width = "10%";
 		document.getElementById("address").style.border = "2px solid red"
 		return false;
 	} else 
@@ -79,7 +79,7 @@ function checkOccupation()
 {
 	if(document.regist.occupation.selectedIndex == 0) 
 	{
-		document.getElementById("occupation").style.width = "10%"
+		//document.getElementById("occupation").style.width = "20%"
 		document.getElementById("occupation").style.border = "2px solid red"
 		return false;
 	} else 
@@ -94,7 +94,7 @@ function checkStatus()
 {
 	if(document.regist.status.selectedIndex == 0) 
 	{
-		document.getElementById("status").style.width = "10%"
+		//document.getElementById("status").style.width = "10%"
 		document.getElementById("status").style.border = "2px solid red"
 		return false;
 	} else 

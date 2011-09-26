@@ -133,7 +133,9 @@ $row =mysql_fetch_assoc($result);
 <?php
 		
 $query = "SELECT * 
-FROM employee";
+FROM employee
+order by id
+";
 
 $result = mysql_query($query) or die("Error running query");
 while($row =mysql_fetch_assoc($result))
@@ -173,11 +175,17 @@ mysql_close($con);
 			
 		</table>
 		
-	</br>
+	<br/>
 	
-	<a href="edit.php">
-		<input type="button" name="button" value="Edit"/>
+	<a href="index.php">
+		<button type="button">Home</button>
 	</a>
+	<a href="edit.php">
+		<button type="button">Edit</button>
+	</a>
+	
+	
+
 
 	</body>
 	

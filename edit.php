@@ -3,6 +3,12 @@ if(isset($_POST['edit']))
 {
 	$rows = count($_POST['name']);
 	$query="";
+	if(isset($_POST['delete']))
+		$delete = $_POST['delete'];
+	else 
+		$delete = array();
+
+	
 	
 	for($i=0;$i<$rows;$i++)
 	{
@@ -12,6 +18,9 @@ if(isset($_POST['edit']))
 	 $address = $_POST['address'][$i];
 	 $status = $_POST['status'][$i];
 	 $id = $_POST['id'][$i];
+
+	
+	
 		
 	 $query.= "UPDATE employee SET
 	 	     name =  '$name',
@@ -27,8 +36,18 @@ if(isset($_POST['edit']))
 	$con = mysqli_connect("localhost","root","") or die('Could not connect to db');
 	$db = mysqli_select_db($con,"form") or die('Could not select databse');
 	
-	mysqli_multi_query($con,$query) or die ("Could not run query");
+	 mysqli_multi_query($con,$query) or die ("Could not run query");
+     while(mysqli_next_result($con)){}
 	
+	$query2="";
+	
+	foreach($delete as $val)
+	{
+		$query2.="DELETE FROM employee where id = '$val';";
+	}
+	echo $query2.'<br/>';
+	if($query2!="")
+	mysqli_multi_query($con,$query2) or die ("Could not run query ".mysqli_error($con));
 	mysqli_close($con);
 	header("Location:view.php");
 	
@@ -50,7 +69,7 @@ if(isset($_POST['edit']))
 		<h1> Edit Employee Details</h1>
 		<br/>
 	 <form method="post" >
-		<table border="1">
+		<table border="">
 			
 			<tr>
 				<th>
@@ -75,6 +94,10 @@ if(isset($_POST['edit']))
 				
 				<th>
 					Status
+				</th>
+				
+				<th>
+					Delete
 				</th>
 			</tr>
 
@@ -144,6 +167,10 @@ $row = mysql_fetch_assoc($result);
 				}
 				?>
 			</select>
+				</td>
+				
+				<td>
+					<input type="checkbox" name="delete[]" value="<?php echo $row['id'];?>"/>
 				</td>
 			</tr>
 			
