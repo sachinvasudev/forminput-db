@@ -1,7 +1,7 @@
 
 <html>
 	<head>
-		<title> Student Registration </title>
+		<title> Employee Registration </title>
 		<link type="text/css" rel="stylesheet" href="reg.css"/>
 	</head>
 	<body>
@@ -62,11 +62,26 @@
 			if (isset($_POST['submit'])) 
 			
 			{
-				$name=$_POST['Name'];
+				$name=addslashes($_POST['Name']);
 				$age=$_POST['Age'];
-				$occpn=$_POST['occupation'];
-				$addrs=nl2br($_POST['address']);
+				$occpn=addslashes($_POST['occupation']);
+				$addrs=addslashes((nl2br($_POST['address'])));
+				$status = $_POST['status'];
+				
+				$con = mysql_connect("localhost","root","") or die('Could not connect to db');
+				$db = mysql_select_db("form") or die('Could not select databse');
+				
+				
+				$query = "INSERT INTO employee (name,age,occupation,address,status)
+						 VALUES
+(						 '$name','$age','$occpn','$addrs','$status')";
 
+				mysql_query($query,$con) or die("Could not run query");
+				
+				header('Location: view.php');
+				
+				mysql_close($con);
+					
 				echo 'Name:'.$name.'</br>';
 				echo 'Age:'.$age.'</br>';
 				echo 'Occupation:'.$occpn.'</br>';

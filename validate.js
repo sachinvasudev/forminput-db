@@ -30,7 +30,7 @@ function validate2()
 
 	if(!checkOccupation())
 		message += "Occupation\n";
-	message += " ";
+	
 	
 	if(!checkStatus())
 		message += "Status\n";
