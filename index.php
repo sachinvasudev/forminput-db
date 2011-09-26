@@ -65,7 +65,7 @@
 				$name=addslashes($_POST['Name']);
 				$age=$_POST['Age'];
 				$occpn=addslashes($_POST['occupation']);
-				$addrs=addslashes((nl2br($_POST['address'])));
+				$addrs=addslashes((nl2br(htmlspecialchars($_POST['address']))));
 				$status = $_POST['status'];
 				
 				$con = mysql_connect("localhost","root","") or die('Could not connect to db');
@@ -78,9 +78,10 @@
 
 				mysql_query($query,$con) or die("Could not run query");
 				
+				mysql_close($con);
 				header('Location: view.php');
 				
-				mysql_close($con);
+				
 					
 				echo 'Name:'.$name.'</br>';
 				echo 'Age:'.$age.'</br>';
