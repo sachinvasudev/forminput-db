@@ -6,7 +6,7 @@ margin-bottom:0px;
 
 body.page2
 {
-	text-align:center;=
+	text-align:center;
 }
 
 table
@@ -17,6 +17,8 @@ table
 .toptext
 {
  font-weight: bold;
+ font-family:verdana;
+ font-size:16px;
  }
 
  .bottomtext
@@ -47,3 +49,34 @@ table
  	text-decoration: none;
  }
 
+table.page2
+{
+	font-family:verdana;
+	font-weight:normal;
+	font-size:17px;
+	border-collapse:collapse;
+}
+
+input
+{
+	font-family: verdana;
+	font-size:17px;
+	
+}
+
+select
+{
+	font-family:verdana;
+	font-size:17px;
+}
+
+textarea.page2
+{
+	font-family:verdana;
+	font-size:17px;
+}
+
+th
+{
+	background-color:cyan;
+}

@@ -29,6 +29,7 @@ $row =mysql_fetch_assoc($result);
 		
 		<h1> Employee Details</h1>
 		<br/>
+		<!--
 		<table border="1">
 			<tr>
 				<th>
@@ -98,10 +99,10 @@ $row =mysql_fetch_assoc($result);
 		</table>
 		
 		<br/>
-		
+		-->
 
 		
-		<table border="1">
+		<table border="1" cellpadding="5" class="page2">
 			
 			<tr>
 				<th>

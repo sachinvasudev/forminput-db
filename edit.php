@@ -69,7 +69,7 @@ if(isset($_POST['edit']))
 		<h1> Edit Employee Details</h1>
 		<br/>
 	 <form method="post" >
-		<table border="">
+		<table class="page2" border="1" cellpadding="0" >
 			
 			<tr>
 				<th>
@@ -126,7 +126,7 @@ $row = mysql_fetch_assoc($result);
 			
 			<tr>
 				<td>
-				    <input type="text" readonly="readonly" size ="15" name="id[]" value="<?php echo $row['id'];?>"/>	
+				    <input type="text" readonly="readonly" size ="2" name="id[]" value="<?php echo $row['id'];?>"/>	
 				</td>
 				
 				<td>
@@ -153,7 +153,7 @@ $row = mysql_fetch_assoc($result);
 				</td>
 				
 				<td>
-					<input type="text" size ="15" name="address[]" value="<?php echo $row['address'];?>"/>	
+					<input type="text" size ="15" name="address[]" value="<?php echo $row['address'];?>"/>
 				</td>
 				
 				<td>
