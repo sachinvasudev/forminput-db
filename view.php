@@ -143,8 +143,15 @@ while($row =mysql_fetch_assoc($result))
 {		
 		
 ?>
+			<?php
+			if($row['status']=="Active")
+				echo '<tr class="active">';
+			else 
+				echo '<tr class="inactive">';
 			
-			<tr>
+			
+			?>
+			
 				<td>
 					<?php echo $row['id']?>
 				</td>
@@ -182,8 +189,12 @@ mysql_close($con);
 		<button type="button">Home</button>
 	</a>
 	<a href="edit.php">
-		<button type="button">Edit</button>
+		<button type="button">Edit Employees</button>
 	</a>
+	<a href="add.php">
+		<button type="button">Add Employees</button>
+	</a>
+	
 	
 	
 

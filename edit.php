@@ -122,9 +122,14 @@ for($i=0;$i<$rows;$i++)
 $row = mysql_fetch_assoc($result);
 	
 
+			
+			if($row['status']=="Active")
+				echo '<tr class="active">';
+			else 
+				echo '<tr class="inactive">';
 ?>
 			
-			<tr>
+			
 				<td>
 				    <input type="text" readonly="readonly" size ="2" name="id[]" value="<?php echo $row['id'];?>"/>	
 				</td>
@@ -138,8 +143,13 @@ $row = mysql_fetch_assoc($result);
 				</td>
 				
 				<td>
-			<select name="occupation[]">
+			
 				<?php
+				if($row['status']=="Active")
+				echo '<select class="active" name="occupation[]">';
+			else 
+				echo '<select class="inactive" name="occupation[]">';
+				
 				foreach($occupations as $val)
 				{
 					
@@ -157,8 +167,13 @@ $row = mysql_fetch_assoc($result);
 				</td>
 				
 				<td>
-			<select name="status[]">
+			
 				<?php
+				
+				if($row['status']=="Active")
+				echo '<select class="active" name="status[]">';
+			else 
+				echo '<select class="inactive" name="status[]">';
 				foreach($statuss as $val)
 				{
 					
@@ -171,7 +186,7 @@ $row = mysql_fetch_assoc($result);
 			</select>
 				</td>
 				
-				<td>
+				<td style="text-align: center">
 					<input type="checkbox" name="delete[]" value="<?php echo $row['id'];?>"/>
 				</td>
 			</tr>
@@ -183,8 +198,12 @@ mysql_close($con);
 
 			
 		</table>
+		<a href="view.php">
+		<button type="button">Back</button>
+	</a>
 			<input type="hidden"  name="rows" value="<?php echo $rows;?>"/>	
 		<input type="submit" name="edit" value="Submit" />
+		
 			</form>
 
 	</body>
