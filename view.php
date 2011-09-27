@@ -29,77 +29,11 @@ $row =mysql_fetch_assoc($result);
 		
 		<h1> Employee Details</h1>
 		<br/>
-		<!--
-		<table border="1">
-			<tr>
-				<th>
-					ID
-				</th>
-				
-				<td>
-					<?php echo $row['id']?>
-				</td>
-				
-			</tr>
-			
-			<tr>
-				<th>
-					Name
-				</th>
-				
-				<td>
-					<?php echo $row['name']?>
-				</td>
-				
-			</tr>
-			
-			<tr>
-				<th>
-					Age
-				</th>
-				
-				<td>
-					<?php echo $row['age']?>
-				</td>
-				
-			</tr>
-			
-			<tr>
-				<th>
-					Occupation
-				</th>
-				
-				<td>
-					<?php echo $row['occupation']?>
-				</td>
-				
-			</tr>
-			
-			<tr>
-				<th>
-					Address
-				</th>
-				
-				<td>
-					<?php echo $row['address']?>
-				</td>
-				
-			</tr>
-			
-			<tr>
-				<th>
-					Status
-				</th>
-				
-				<td>
-					<?php echo $row['status']?>
-				</td>
-				
-			</tr>
-		</table>
-		
-		<br/>
-		-->
+	    <form method="post">
+	    	<input type="text" name="query" />
+	    	<input type="submit" name="search" value="Search" />
+	    	
+	    </form>
 
 		
 		<table border="1" cellpadding="5" class="page2">
@@ -129,7 +63,17 @@ $row =mysql_fetch_assoc($result);
 			
 			
 <?php
-		
+
+if(isset($_POST['search']))
+{
+	$searchString = $_POST['query'];
+	$query = "SELECT *
+from employee
+where name like '%$searchString%'
+or address like '%$searchString%'";
+	
+}
+else		
 $query = "SELECT * 
 FROM employee
 order by id
