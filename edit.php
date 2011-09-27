@@ -50,6 +50,7 @@ if(isset($_POST['edit']))
 	mysqli_multi_query($con,$query2) or die ("Could not run query ".mysqli_error($con));
 	mysqli_close($con);
 	header("Location:view.php");
+	exit();
 	
 	
 	
@@ -124,9 +125,9 @@ $row = mysql_fetch_assoc($result);
 
 			
 			if($row['status']=="Active")
-				echo '<tr class="active">';
+				echo '<tr class="active hv">';
 			else 
-				echo '<tr class="inactive">';
+				echo '<tr class="inactive hv">';
 ?>
 			
 			

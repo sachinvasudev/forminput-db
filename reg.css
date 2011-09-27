@@ -77,6 +77,14 @@ button,input[type="submit"],input[type="reset"]
 	background-color: #DEAD7D;
 }
 
+button:hover,input[type="submit"]:hover,input[type="reset"]:hover
+{
+	font-family: verdana;
+	font-size:17px;
+	color:#634221;
+	
+}
+
 select
 {
 	font-family:verdana;
@@ -109,3 +117,6 @@ th
 {
 	background-color:#AEEAAE
 }
+
+tr.hv:hover 
+{ background: #FEE680; }

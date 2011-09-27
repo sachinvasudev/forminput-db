@@ -41,6 +41,7 @@ if(isset($_POST['adde']))
 	mysqli_close($con);
 	
 	header("Location:view.php");
+	exit();
 	
 	
 	
@@ -59,8 +60,13 @@ if(isset($_POST['adde']))
 		
 		<h1>Add Employees</h1>
 		<br/>
+		
 		<form method="post" onsubmit="return validate2()">
-			How many?<input type="text" id="num" name="num" />
+			How many?
+			<input type="text" id="num" name="num" />
+			<a href="view.php">
+		<button type="button">Back</button>
+	</a>
 			<input type="submit" value="Generate" name="generate"/>
 			
 		</form>
@@ -161,9 +167,7 @@ for($i=0;$i<$num;$i++)
 		<input type="submit" name="adde" value="Submit" />
 			</form>
 			<?php }?>
-<a href="view.php">
-		<button type="button">Back</button>
-	</a>
+
 	</body>
 	
 	<script type="text/javascript" src="add.js"></script>

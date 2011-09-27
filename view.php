@@ -104,10 +104,7 @@ $row =mysql_fetch_assoc($result);
 		
 		<table border="1" cellpadding="5" class="page2">
 			
-			<tr>
-				<th>
-					ID
-				</th>
+			<tr >
 				
 				<th>
 					Name
@@ -145,16 +142,13 @@ while($row =mysql_fetch_assoc($result))
 ?>
 			<?php
 			if($row['status']=="Active")
-				echo '<tr class="active">';
+				echo '<tr class="active hv">';
 			else 
-				echo '<tr class="inactive">';
+				echo '<tr class="inactive hv">';
 			
 			
 			?>
 			
-				<td>
-					<?php echo $row['id']?>
-				</td>
 				
 				<td>
 					<?php echo $row['name']?>

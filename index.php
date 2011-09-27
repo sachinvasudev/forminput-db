@@ -80,21 +80,21 @@
 					<td colspan="2" style="text-align: center">
 						<input type="reset" value"Reset" name="reset"/>
 						<input type="submit" value="Submit" name="submit"/>
+						<a href="view.php">
+		<button type="button">View data</button>
+	</a>
+						
 					</td>
 					
 					
 				</tr>
+				
+				
 			
-			
-			
-			
-			
-			
-		
-
 			
 			
 			</table>
+			
 			</form>
 			
 			<?php
@@ -119,14 +119,8 @@
 				
 				mysql_close($con);
 				header('Location: view.php');
+				exit();
 				
-				
-					
-				echo 'Name:'.$name.'</br>';
-				echo 'Age:'.$age.'</br>';
-				echo 'Occupation:'.$occpn.'</br>';
-				echo 'Address:<br/>'.$addrs.'</br>';
-				//echo nl2br(htmlspecialchars($addrs));
 
 			}
 		?>
