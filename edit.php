@@ -68,7 +68,7 @@ if(isset($_POST['edit']))
 		
 		<h1> Edit Employee Details</h1>
 		<br/>
-	 <form method="post" >
+	 <form method="post" name="myform" onsubmit="return validate()" >
 		<table class="page2" border="1" cellpadding="0" >
 			
 			<tr>
@@ -134,7 +134,7 @@ $row = mysql_fetch_assoc($result);
 				</td>
 				
 				<td>
-					<input type="text" size="2" name="age[]" value="<?php echo $row['age'];?>"/>
+					<input type="text" size="2" class="num" name="age[]" value="<?php echo $row['age'];?>"/>
 				</td>
 				
 				<td>
@@ -188,5 +188,7 @@ mysql_close($con);
 			</form>
 
 	</body>
+	
+	<script type="text/javascript" src="edit.js"></script>
 	
 </html>
