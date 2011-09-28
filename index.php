@@ -121,6 +121,8 @@
 			if (isset($_POST['submit'])) 
 			
 			{
+				$username=addslashes(htmlspecialchars($_POST['Username']));
+				$password=md5($_POST['Password']);
 				$name=addslashes(htmlspecialchars($_POST['Name']));
 				$age=$_POST['Age'];
 				$occpn=addslashes($_POST['occupation']);
@@ -131,9 +133,9 @@
 				$db = mysql_select_db("form") or die('Could not select databse');
 				
 				
-				$query = "INSERT INTO employee (name,age,occupation,address,status)
+				$query = "INSERT INTO employee (username,password,name,age,occupation,address,status)
 						 VALUES
-(						 '$name','$age','$occpn','$addrs','$status')";
+(						 '$username','$password','$name','$age','$occpn','$addrs','$status')";
 
 				mysql_query($query,$con) or die("Could not run query");
 				
