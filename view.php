@@ -70,7 +70,9 @@ if(isset($_POST['search']))
 	$query = "SELECT *
 from employee
 where name like '%$searchString%'
-or address like '%$searchString%'";
+or address like '%$searchString%'
+ORDER BY id
+";
 	
 }
 else		
