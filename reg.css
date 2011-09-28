@@ -120,3 +120,12 @@ th
 
 tr.hv:hover 
 { background: #FEE680; }
+
+div.error
+{
+    text-align:center;	
+    font-weight:bold;
+	color:red;
+	font-family: Verdana;
+	font-size:17px;
+}

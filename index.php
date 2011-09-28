@@ -132,8 +132,18 @@
 				$con = mysql_connect("localhost","root","") or die('Could not connect to db');
 				$db = mysql_select_db("form") or die('Could not select databse');
 				
+				$query = "select count(*) from employee 
+					      where username='$username'";
 				
-				$query = "INSERT INTO employee (username,password,name,age,occupation,address,status)
+				$result =mysql_query($query,$con) or die("Could not run query");
+				$count = mysql_result($result,0,0);
+				if($count>0)
+				{
+					echo "<div class='error'>Username '$username' already taken</div>";
+				}
+				else
+					{
+						$query = "INSERT INTO employee (username,password,name,age,occupation,address,status)
 						 VALUES
 (						 '$username','$password','$name','$age','$occpn','$addrs','$status')";
 
@@ -142,6 +152,9 @@
 				mysql_close($con);
 				header('Location: view.php');
 				exit();
+						
+					}
+				
 				
 
 			}
