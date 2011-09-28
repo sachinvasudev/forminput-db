@@ -11,6 +11,26 @@
 				<tr>
 					<td>
 					<p class="toptext">
+						Username
+					</p></td>
+					<td>
+					<input type="text" maxlength="40" id="username" name= "Username"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+					<p class="toptext">
+						Password
+					</p></td>
+					<td>
+					<input type="password" size="28"maxlength="40" id="password" name= "Password"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+					<p class="toptext">
 						Name
 					</p></td>
 					<td>

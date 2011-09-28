@@ -16,7 +16,7 @@ function validate2()
 			{
 				node.style.border = "2px solid red";
 				message += "" + node.name + "\n";
-			} else if(node.className == "num" && (isNaN(node.value))) 
+			} else if(node.className == "num" && (isNaN(node.value))||node.value<1) 
 			{
 				node.style.border = "2px solid red";
 				message += "" + node.name + "\n";
@@ -24,6 +24,16 @@ function validate2()
 			}
 
 		} //end of type=text block
+		if(node.type=="password")
+		{
+			node.style.border="1 px solid black";
+			
+			if(isEmpty(node.value)) 
+			{
+				node.style.border = "2px solid red";
+				message += "" + node.name + "\n";
+			}
+		}
 
 	}//end of loop
 
