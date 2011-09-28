@@ -149,7 +149,7 @@
 
 			
 			<script>
-				window.onload=document.getElementById("name").focus();
+				window.onload=document.getElementById("username").focus();
 			</script>
 			</body>
 

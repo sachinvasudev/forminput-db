@@ -12,12 +12,13 @@ if(isset($_POST['edit']))
 	
 	for($i=0;$i<$rows;$i++)
 	{
+	 $username= addslashes(htmlspecialchars($_POST['username'][$i]));
 	 $name= addslashes(htmlspecialchars($_POST['name'][$i]));
 	 $age = addslashes(htmlspecialchars($_POST['age'][$i]));
 	 $occupation = addslashes(htmlspecialchars($_POST['occupation'][$i]));
 	 $address = addslashes(htmlspecialchars($_POST['address'][$i]));
 	 $status = addslashes(htmlspecialchars($_POST['status'][$i]));
-	 $id = $_POST['id'][$i];
+	
 
 	
 	
@@ -28,7 +29,7 @@ if(isset($_POST['edit']))
 			 occupation =  '$occupation',
 			 address =  '$address',
 			 status =  '$status'
-			 WHERE  id = '$id';";
+			 WHERE  username = '$username';";
 			 
 			 
 	}
@@ -43,7 +44,7 @@ if(isset($_POST['edit']))
 	
 	foreach($delete as $val)
 	{
-		$query2.="DELETE FROM employee where id = '$val';";
+		$query2.="DELETE FROM employee where username = '$val';";
 	}
 	echo $query2.'<br/>';
 	if($query2!="")
@@ -74,7 +75,7 @@ if(isset($_POST['edit']))
 			
 			<tr>
 				<th>
-					ID
+					Username
 				</th>
 				
 				<th>
@@ -111,7 +112,7 @@ $con = mysql_connect("localhost","root","") or die('Could not connect to db');
 $db = mysql_select_db("form") or die('Could not select databse');
 $query = "SELECT * 
 FROM employee
-ORDER BY id
+ORDER BY name
 ";
 
 $result = mysql_query($query) or die("Error running query");
@@ -132,7 +133,7 @@ $row = mysql_fetch_assoc($result);
 			
 			
 				<td>
-				    <input type="text" readonly="readonly" size ="2" name="id[]" value="<?php echo $row['id'];?>"/>	
+				    <input type="text" readonly="readonly" size ="15" name="username[]" value="<?php echo $row['username'];?>"/>	
 				</td>
 				
 				<td>
@@ -188,7 +189,7 @@ $row = mysql_fetch_assoc($result);
 				</td>
 				
 				<td style="text-align: center">
-					<input type="checkbox" name="delete[]" value="<?php echo $row['id'];?>"/>
+					<input type="checkbox" name="delete[]" value="<?php echo $row['username'];?>"/>
 				</td>
 			</tr>
 			

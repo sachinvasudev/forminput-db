@@ -8,7 +8,7 @@ $db = mysql_select_db("form") or die('Could not select databse');
 
 $query = "SELECT * 
 FROM employee
-ORDER BY id DESC 
+ORDER BY name DESC 
 LIMIT 1";
 
 $result = mysql_query($query) or die("Error running query");
@@ -41,6 +41,10 @@ $row =mysql_fetch_assoc($result);
 			<tr >
 				
 				<th>
+					Username
+				</th>
+				
+				<th>
 					Name
 				</th>
 				
@@ -71,14 +75,14 @@ if(isset($_POST['search']))
 from employee
 where name like '%$searchString%'
 or address like '%$searchString%'
-ORDER BY id
+ORDER BY name
 ";
 	
 }
 else		
 $query = "SELECT * 
 FROM employee
-order by id
+order by name
 ";
 
 $result = mysql_query($query) or die("Error running query");
@@ -95,6 +99,10 @@ while($row =mysql_fetch_assoc($result))
 			
 			?>
 			
+				
+				<td>
+					<?php echo $row['username']?>
+				</td>
 				
 				<td>
 					<?php echo $row['name']?>
