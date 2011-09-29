@@ -8,12 +8,12 @@ else
 		die();
 	}
 	
-
+session_start();
 
 if(isset($_POST['submit']))
 {
 	$con = dbConnect();
-	session_start();
+	
 	
 	
 	if(login_check($_POST['Username'],md5($_POST['Password']),"employee",$con))
@@ -33,7 +33,7 @@ if(isset($_POST['submit']))
 	
 	mysql_close($con);
 }
-session_start();
+
 if(isset($_SESSION['username']))
 {
 	redirect("homepage");

@@ -24,7 +24,7 @@ if(isset($_POST['adde']))
 	 $name= addslashes(htmlspecialchars($_POST['name'][$i]));
 	 $age = addslashes(htmlspecialchars($_POST['age'][$i]));
 	 $occupation = addslashes(htmlspecialchars($_POST['occupation'][$i]));
-	 $address = addslashes(htmlspecialchars($_POST['address'][$i]));
+	 $address=addslashes((nl2br(htmlspecialchars($_POST['address']))));
 	 $status = addslashes(htmlspecialchars($_POST['status'][$i]));
 	
 
@@ -45,8 +45,8 @@ if(isset($_POST['adde']))
 			 
 	}
 	
-	$con = mysqli_connect("localhost","root","") or die('Could not connect to db');
-	$db = mysqli_select_db($con,"form") or die('Could not select databse');
+	$con = dbConnectI();
+	
 	
 	 mysqli_multi_query($con,$query) or die ("Could not run query");
     
