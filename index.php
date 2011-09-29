@@ -13,10 +13,21 @@ else
 if(isset($_POST['submit']))
 {
 	$con = dbConnect();
-	if(login_check($_POST['Username'],md5($_POST['Password']),$con))
+	session_start();
+	
+	
+	if(login_check($_POST['Username'],md5($_POST['Password']),"employee",$con))
 	{
-		session_start();
+		
 		$_SESSION['username'] =$_POST['Username'];
+		$_SESSION['type'] = "employee";
+		
+		
+	}
+	else if(login_check($_POST['Username'],md5($_POST['Password']),"admin",$con))
+	{
+		$_SESSION['username'] = $_POST['Username'];
+		$_SESSION['type'] = 'admin';
 		
 	}
 	
@@ -25,8 +36,7 @@ if(isset($_POST['submit']))
 session_start();
 if(isset($_SESSION['username']))
 {
-	
-header('Location: employee.php');
+	redirect("homepage");
 
 }
 
@@ -77,6 +87,11 @@ header('Location: employee.php');
 				</tr>
 				
 		</table>
+		<br/>
+		<a href="register.php">
+			<button>Register</button>
+		</a>
+		
 		<?php
 		if(isset($_POST['submit']))
 		echo '<div class="error">Invalid username or password</div>';

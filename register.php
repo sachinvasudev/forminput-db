@@ -110,8 +110,8 @@ else
 					<td colspan="2" style="text-align: center">
 						<input type="reset" value"Reset" name="reset"/>
 						<input type="submit" value="Submit" name="submit"/>
-						<a href="view.php">
-		<button type="button">View data</button>
+						<a href="index.php">
+		<button type="button">Home</button>
 	</a>
 						
 					</td>

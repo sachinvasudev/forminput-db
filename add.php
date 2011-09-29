@@ -1,13 +1,25 @@
 <?php
+
+if(file_exists("functions.inc"))
+require_once("functions.inc");
+
+else
+	{
+		echo "<div style='text-align:center;color:red;font-size:24px'>Fatal Error. Contact Webmaster</div>";
+		die();
+	}
+session_start();	
+isLoggedIn("admin");
+
 if(isset($_POST['adde']))
 {
-	$rows = count($_POST['name']);
+	$employees = count($_POST['name']);
 	$query="";
 	
 
 	
 	
-	for($i=0;$i<$rows;$i++)
+	for($i=0;$i<$employees;$i++)
 	{
 	 $name= addslashes(htmlspecialchars($_POST['name'][$i]));
 	 $age = addslashes(htmlspecialchars($_POST['age'][$i]));

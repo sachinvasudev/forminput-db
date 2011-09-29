@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `occupation` varchar(20) NOT NULL,
   `address` varchar(200) NOT NULL,
   `status` enum('Active','Inactive') NOT NULL,
+  `history` datetime DEFAULT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

@@ -9,8 +9,8 @@ else
 	}
 
 session_start();
-//$uname = $_SESSION['username'];
-//echo $uname;
+
+isLoggedIn("admin");
 
 
 $con = dbConnect();
@@ -88,12 +88,12 @@ order by name
 ";
 
 $result = mysql_query($query) or die("Error running query");
-while($row =mysql_fetch_assoc($result))
+while($employee =mysql_fetch_assoc($result))
 {		
 		
 ?>
 			<?php
-			if($row['status']=="Active")
+			if($employee['status']=="Active")
 				echo '<tr class="active hv">';
 			else 
 				echo '<tr class="inactive hv">';
@@ -103,27 +103,27 @@ while($row =mysql_fetch_assoc($result))
 			
 				
 				<td>
-					<?php echo $row['username']?>
+					<?php echo $employee['username']?>
 				</td>
 				
 				<td>
-					<?php echo $row['name']?>
+					<?php echo $employee['name']?>
 				</td>
 				
 				<td>
-					<?php echo $row['age']?>
+					<?php echo $employee['age']?>
 				</td>
 				
 				<td>
-					<?php echo $row['occupation']?>
+					<?php echo $employee['occupation']?>
 				</td>
 				
 				<td>
-					<?php echo $row['address']?>
+					<?php echo $employee['address']?>
 				</td>
 				
 				<td>
-					<?php echo $row['status']?>
+					<?php echo $employee['status']?>
 				</td>
 			</tr>
 			<?php
@@ -135,8 +135,8 @@ mysql_close($con);
 		
 	<br/>
 	
-	<a href="index.php">
-		<button type="button">Home</button>
+	<a href="logout.php">
+		<button type="button">Logout</button>
 	</a>
 	<a href="edit.php">
 		<button type="button">Edit Employees</button>

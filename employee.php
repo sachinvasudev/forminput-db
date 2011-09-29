@@ -9,21 +9,17 @@ else
 	}
 
 session_start();
-if(isset($_SESSION['username']))
-{
+isLoggedIn("employee");
+
+
 	$username= $_SESSION['username'];
 	$con = dbConnect();
 	
-
-	
 	$employee= mysql_fetch_assoc(getEmployee($username,$con));
-
-}
-else 
-{
-	die("sorry");
 	
-}
+	
+
+
 
 ?>
 
@@ -40,6 +36,85 @@ else
 		
 		
 	<h2 class="empl">Welcome, <?php echo $employee['name'];?></h3>
+	<h3 class="empl">Your last login was on <?php echo $employee['history']; ?></h3>
+	<h3 class="empl">Your details are as follows</h3>
+	
+	<table border="1" cellpadding="5" class="page2">
+			
+			<tr >
+				
+				<th>
+					Username
+				</th>
+				
+				<th>
+					Name
+				</th>
+				
+				<th>
+					Age
+				</th>
+				
+				<th>
+					Occupation
+				</th>
+				
+				<th>
+					Address
+				</th>
+				
+				<th>
+					Status
+				</th>
+			</tr>
+			
+			
+		
+
+			<?php
+			if($employee['status']=="Active")
+				echo '<tr class="active hv">';
+			else 
+				echo '<tr class="inactive hv">';
+			
+			
+			?>
+			
+				
+				<td>
+					<?php echo $employee['username']?>
+				</td>
+				
+				<td>
+					<?php echo $employee['name']?>
+				</td>
+				
+				<td>
+					<?php echo $employee['age']?>
+				</td>
+				
+				<td>
+					<?php echo $employee['occupation']?>
+				</td>
+				
+				<td>
+					<?php echo $employee['address']?>
+				</td>
+				
+				<td>
+					<?php echo $employee['status']?>
+				</td>
+			</tr>
+			
+			
+
+			
+	</table>
+	
+	<a href="logout.php">
+						<button>Logout</button>
+					</a>
+	
 	</body>
 	
 </html>

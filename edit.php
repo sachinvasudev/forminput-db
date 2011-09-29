@@ -8,11 +8,13 @@ else
 		echo "<div style='text-align:center;color:red;font-size:24px'>Fatal Error. Contact Webmaster</div>";
 		die();
 	}
+session_start();
+if(isLoggedIn("admin"));
 
 
 if(isset($_POST['edit']))
 {
-	$rows = count($_POST['name']);
+	$employees = count($_POST['name']);
 	$query="";
 	if(isset($_POST['delete']))
 		$delete = $_POST['delete'];
@@ -21,7 +23,7 @@ if(isset($_POST['edit']))
 
 	
 	
-	for($i=0;$i<$rows;$i++)
+	for($i=0;$i<$employees;$i++)
 	{
 	 $username= addslashes(htmlspecialchars($_POST['username'][$i]));
 	 $name= addslashes(htmlspecialchars($_POST['name'][$i]));
@@ -121,16 +123,16 @@ $statuss = array("Active","Inactive");
 $con = dbConnect();
 
 $result = getEmployees($con);
-$rows = mysql_num_rows($result);
+$employees = mysql_num_rows($result);
 
-for($i=0;$i<$rows;$i++)
+for($i=0;$i<$employees;$i++)
 {
 
-$row = mysql_fetch_assoc($result);
+$employee = mysql_fetch_assoc($result);
 	
 
 			
-			if($row['status']=="Active")
+			if($employee['status']=="Active")
 				echo '<tr class="active hv">';
 			else 
 				echo '<tr class="inactive hv">';
@@ -138,21 +140,21 @@ $row = mysql_fetch_assoc($result);
 			
 			
 				<td>
-				    <input type="text" readonly="readonly" size ="15" name="username[]" value="<?php echo $row['username'];?>"/>	
+				    <input type="text" readonly="readonly" size ="15" name="username[]" value="<?php echo $employee['username'];?>"/>	
 				</td>
 				
 				<td>
-					<input type="text" size ="15" name="name[]" value="<?php echo $row['name'];?>"/>				
+					<input type="text" size ="15" name="name[]" value="<?php echo $employee['name'];?>"/>				
 				</td>
 				
 				<td>
-					<input type="text" size="2" class="num" name="age[]" value="<?php echo $row['age'];?>"/>
+					<input type="text" size="2" class="num" name="age[]" value="<?php echo $employee['age'];?>"/>
 				</td>
 				
 				<td>
 			
 				<?php
-				if($row['status']=="Active")
+				if($employee['status']=="Active")
 				echo '<select class="active" name="occupation[]">';
 			else 
 				echo '<select class="inactive" name="occupation[]">';
@@ -160,7 +162,7 @@ $row = mysql_fetch_assoc($result);
 				foreach($occupations as $val)
 				{
 					
-					if($val==$row['occupation'])
+					if($val==$employee['occupation'])
 					echo '<option value="',$val,'" selected="selected">',$val,'</option>';
 					else
 					echo '<option value="',$val,'">',$val,'</option>';
@@ -170,21 +172,21 @@ $row = mysql_fetch_assoc($result);
 				</td>
 				
 				<td>
-					<input type="text" size ="15" name="address[]" value="<?php echo $row['address'];?>"/>
+					<input type="text" size ="15" name="address[]" value="<?php echo $employee['address'];?>"/>
 				</td>
 				
 				<td>
 			
 				<?php
 				
-				if($row['status']=="Active")
+				if($employee['status']=="Active")
 				echo '<select class="active" name="status[]">';
 			else 
 				echo '<select class="inactive" name="status[]">';
 				foreach($statuss as $val)
 				{
 					
-					if($val==$row['status'])
+					if($val==$employee['status'])
 					echo '<option value="',$val,'" selected="selected">',$val,'</option>';
 					else
 					echo '<option value="',$val,'">',$val,'</option>';
@@ -194,7 +196,7 @@ $row = mysql_fetch_assoc($result);
 				</td>
 				
 				<td style="text-align: center">
-					<input type="checkbox" name="delete[]" value="<?php echo $row['username'];?>"/>
+					<input type="checkbox" name="delete[]" value="<?php echo $employee['username'];?>"/>
 				</td>
 			</tr>
 			
@@ -208,7 +210,7 @@ mysql_close($con);
 		<a href="view.php">
 		<button type="button">Back</button>
 	</a>
-			<input type="hidden"  name="rows" value="<?php echo $rows;?>"/>	
+			<input type="hidden"  name="rows" value="<?php echo $employees;?>"/>	
 		<input type="submit" name="edit" value="Submit" />
 		
 			</form>

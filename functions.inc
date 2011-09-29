@@ -4,7 +4,7 @@ function dbConnect()
 {
 		
 	$db = mysql_connect("localhost","root","") or die('Could not connect to db');
-	mysql_select_db("form") or die('Could not select databse');
+	mysql_select_db("form2") or die('Could not select databse');
 	return $db;
 
 
@@ -13,7 +13,7 @@ function dbConnect()
 function dbConnectI()
 {
 	$db = mysqli_connect("localhost","root","") or die('Could not connect to db');
-	mysqli_select_db($db,"form") or die('Could not select databse');
+	mysqli_select_db($db,"form2") or die('Could not select databse');
 	return $db;
 }
 
@@ -32,12 +32,19 @@ function idExists($uname,$conn)
 	
 }
 
-function login_check($uname,$pass,$conn)
+function login_check($uname,$pass,$type,$conn)
 {
+	if($type=="employee")
 	$query = "SELECT COUNT(*)
 			  FROM employee
 			  WHERE username='$uname'
 		      AND password ='$pass'";
+	else if($type=="admin")
+	$query = "SELECT COUNT(*)
+			  FROM admin
+			  WHERE username='$uname'
+		      AND password ='$pass'";
+	
 			  
     $result =mysql_query($query,$conn) or die("Could not run query");
 	$count = mysql_result($result,0,0);
@@ -78,10 +85,60 @@ function getEmployee($uname,$conn)
 	
 }
 
-function isLoggedIn()
+function isLoggedIn($type)
 {
 	if(isset($_SESSION['username']))
-		return true;
+	{
+		if($type!=$_SESSION['type'])
+		redirect("homepage");
+		else 
+			return true;
+	}
+else redirect("home");
+	
+}
+
+function updateHistory($uname,$conn)
+{
+	date_default_timezone_set("Asia/Calcutta");
+	$date = date("YmdHis");
+	
+	
+	$query = "UPDATE employee
+	SET history = '$date'
+	WHERE username='$uname'";
+	mysql_query($query,$conn) or die(mysql_error());
+  
+	
+}
+
+function redirect($where)
+{
+	$type = $_SESSION['type'];
+	switch($where)
+	{
+		case "homepage":
+			switch($type)
+			{
+				case "employee":
+					header("Location: employee.php");
+					die();
+					break;
+				case "admin":
+					header("Location: view.php");
+					die();
+
+			}
+			
+			break;
+			
+		case "home":
+			header("Location: index.php");
+			die();
+			
+		break;
+					
+	}
 }
 
 
