@@ -8,6 +8,9 @@ else
 		die();
 	}
 
+session_start();
+//$uname = $_SESSION['username'];
+//echo $uname;
 
 
 $con = dbConnect();

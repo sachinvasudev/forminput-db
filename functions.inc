@@ -52,8 +52,8 @@ function getEmployees($conn)
 {
 	$query = "SELECT * 
 FROM employee
-ORDER BY name DESC 
-LIMIT 1";
+ORDER BY name 
+";
 
 $result = mysql_query($query,$conn) or die("Error running query");
 return $result;
@@ -65,6 +65,24 @@ function addEmployees($empArray,$conn)
 	
 }
 
+function getEmployee($uname,$conn)
+{
+	$query = "SELECT * 
+	FROM employee
+	WHERE username='$uname'
+	";
+	
+	$result = mysql_query($query,$conn) or die("Error running query");
+	return $result;
+	
+	
+}
+
+function isLoggedIn()
+{
+	if(isset($_SESSION['username']))
+		return true;
+}
 
 
 ?>

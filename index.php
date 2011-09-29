@@ -7,16 +7,27 @@ else
 		echo "<div style='text-align:center;color:red;font-size:24px'>Fatal Error. Contact Webmaster</div>";
 		die();
 	}
+	
+
 
 if(isset($_POST['submit']))
 {
 	$con = dbConnect();
 	if(login_check($_POST['Username'],md5($_POST['Password']),$con))
 	{
+		session_start();
+		$_SESSION['username'] =$_POST['Username'];
 		
 	}
 	
+	mysql_close($con);
+}
+session_start();
+if(isset($_SESSION['username']))
+{
 	
+header('Location: employee.php');
+
 }
 
 
