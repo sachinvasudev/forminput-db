@@ -1,11 +1,21 @@
+<?php
+if(file_exists("functions.inc"))
+require_once("functions.inc");
 
+else
+	{
+		echo "<div style='text-align:center;color:red;font-size:24px'>Fatal Error. Contact Webmaster</div>";
+		die();
+	}
+
+?>
 <html>
 	<head>
 		<title> Employee Registration </title>
 		<link type="text/css" rel="stylesheet" href="reg.css"/>
 	</head>
 	<body>
-		<form method="post" action="index.php" name="regist" onsubmit="return validate2();"enctype="multipart/form-data">
+		<form method="post" action="register.php" name="regist" onsubmit="return validate2();"enctype="multipart/form-data">
 			<table border="0">
 				
 				<tr>
@@ -129,15 +139,13 @@
 				$addrs=addslashes((nl2br(htmlspecialchars($_POST['address']))));
 				$status = $_POST['status'];
 				
-				$con = mysql_connect("localhost","root","") or die('Could not connect to db');
-				$db = mysql_select_db("form") or die('Could not select databse');
+				$con = dbConnect();
 				
-				$query = "select count(*) from employee 
-					      where username='$username'";
 				
-				$result =mysql_query($query,$con) or die("Could not run query");
-				$count = mysql_result($result,0,0);
-				if($count>0)
+				
+				
+			
+				if(idExists($username,$con))
 				{
 					echo "<div class='error'>Username '$username' already taken</div>";
 				}

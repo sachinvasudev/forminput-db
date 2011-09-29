@@ -1,4 +1,15 @@
 <?php
+
+if(file_exists("functions.inc"))
+require_once("functions.inc");
+
+else
+	{
+		echo "<div style='text-align:center;color:red;font-size:24px'>Fatal Error. Contact Webmaster</div>";
+		die();
+	}
+
+
 if(isset($_POST['edit']))
 {
 	$rows = count($_POST['name']);
@@ -34,8 +45,7 @@ if(isset($_POST['edit']))
 			 
 	}
 	
-	$con = mysqli_connect("localhost","root","") or die('Could not connect to db');
-	$db = mysqli_select_db($con,"form") or die('Could not select databse');
+	$con = dbConnectI();
 	
 	 mysqli_multi_query($con,$query) or die ("Could not run query");
      while(mysqli_next_result($con)){}
@@ -108,14 +118,9 @@ if(isset($_POST['edit']))
 $occupations = array("Doctor","Engineer","Teacher","Lawyer");
 $statuss = array("Active","Inactive");
 
-$con = mysql_connect("localhost","root","") or die('Could not connect to db');
-$db = mysql_select_db("form") or die('Could not select databse');
-$query = "SELECT * 
-FROM employee
-ORDER BY name
-";
+$con = dbConnect();
 
-$result = mysql_query($query) or die("Error running query");
+$result = getEmployees($con);
 $rows = mysql_num_rows($result);
 
 for($i=0;$i<$rows;$i++)

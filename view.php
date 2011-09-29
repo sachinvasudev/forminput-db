@@ -1,18 +1,17 @@
 <?php
+if(file_exists("functions.inc"))
+require_once("functions.inc");
+
+else
+	{
+		echo "<div style='text-align:center;color:red;font-size:24px'>Fatal Error. Contact Webmaster</div>";
+		die();
+	}
 
 
 
+$con = dbConnect();
 
-$con = mysql_connect("localhost","root","") or die('Could not connect to db');
-$db = mysql_select_db("form") or die('Could not select databse');
-
-$query = "SELECT * 
-FROM employee
-ORDER BY name DESC 
-LIMIT 1";
-
-$result = mysql_query($query) or die("Error running query");
-$row =mysql_fetch_assoc($result);
 
 
 
