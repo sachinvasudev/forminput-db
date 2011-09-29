@@ -32,6 +32,22 @@ function idExists($uname,$conn)
 	
 }
 
+function login_check($uname,$pass,$conn)
+{
+	$query = "SELECT COUNT(*)
+			  FROM employee
+			  WHERE username='$uname'
+		      AND password ='$pass'";
+			  
+    $result =mysql_query($query,$conn) or die("Could not run query");
+	$count = mysql_result($result,0,0);
+	if($count==1)
+		return true;
+	else
+		return false;
+	
+}
+
 function getEmployees($conn)
 {
 	$query = "SELECT * 
@@ -48,5 +64,7 @@ function addEmployees($empArray,$conn)
 	
 	
 }
+
+
 
 ?>
