@@ -21,6 +21,7 @@ if(isset($_POST['edit']))
 	else 
 		$delete = array();
 
+	$con = dbConnect();
 	
 	
 	for($i=0;$i<$employees;$i++)
@@ -34,34 +35,35 @@ if(isset($_POST['edit']))
 	
 
 	
-	
 		
-	 $query.= "UPDATE employee SET
+	 $query= "UPDATE sachin_employee SET
 	 	     name =  '$name',
 			 age =  '$age',
 			 occupation =  '$occupation',
 			 address =  '$address',
 			 status =  '$status'
-			 WHERE  username = '$username';";
+			 WHERE  username = '$username'";
 			 
+			 mysql_query($query,$con) or die ("Could not run query ");
 			 
 	}
 	
-	$con = dbConnectI();
 	
-	 mysqli_multi_query($con,$query) or die ("Could not run query");
-     while(mysqli_next_result($con)){}
+	
+	 
+    
 	
 	$query2="";
 	
 	foreach($delete as $val)
 	{
 		$query2.="DELETE FROM sachin_employee where username = '$val';";
+		mysql_query($query2,$con) or die ("Could not run query ".mysql_error($con));
 	}
-	echo $query2.'<br/>';
-	if($query2!="")
-	mysqli_multi_query($con,$query2) or die ("Could not run query ".mysqli_error($con));
-	mysqli_close($con);
+	
+
+	
+	mysql_close($con);
 	header("Location:view.php");
 	exit();
 	
