@@ -26,12 +26,31 @@ if(isset($_POST['edit']))
 	
 	for($i=0;$i<$employees;$i++)
 	{
-	 $username= addslashes(htmlspecialchars($_POST['username'][$i]));
-	 $name= addslashes(htmlspecialchars($_POST['name'][$i]));
-	 $age = addslashes(htmlspecialchars($_POST['age'][$i]));
-	 $occupation = addslashes(htmlspecialchars($_POST['occupation'][$i]));
-	 $address = addslashes(htmlspecialchars($_POST['address'][$i]));
-	 $status = addslashes(htmlspecialchars($_POST['status'][$i]));
+	
+	if(get_magic_quotes_gpc())
+	{
+		 $username= (htmlspecialchars($_POST['username'][$i]));
+		 $name= (htmlspecialchars($_POST['name'][$i]));
+		 $age = (htmlspecialchars($_POST['age'][$i]));
+		 $occupation = (htmlspecialchars($_POST['occupation'][$i]));
+		 $address = (htmlspecialchars($_POST['address'][$i]));
+		 $status = (htmlspecialchars($_POST['status'][$i]));
+		
+	}
+	
+	else
+	 {
+	 	 $username= addslashes(htmlspecialchars($_POST['username'][$i]));
+		 $name= addslashes(htmlspecialchars($_POST['name'][$i]));
+		 $age = (htmlspecialchars($_POST['age'][$i]));
+		 $occupation = addslashes(htmlspecialchars($_POST['occupation'][$i]));
+		 $address = addslashes(htmlspecialchars($_POST['address'][$i]));
+		 $status = (htmlspecialchars($_POST['status'][$i]));
+	 	
+		
+     }
+		
+	 
 	
 
 	

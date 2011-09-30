@@ -17,6 +17,10 @@ isLoggedIn("employee");
 	
 	$employee= mysql_fetch_assoc(getEmployee($username,$con));
 	
+	date_default_timezone_set("Asia/Calcutta");
+	if (date("A")=="AM")
+		$greeting="Good Morning, ";
+	else $greeting="Good Evening, ";
 	
 
 
@@ -35,7 +39,7 @@ isLoggedIn("employee");
 		<br/><br/>
 		
 		
-	<h2 class="empl">Welcome, <?php echo $employee['name'];?></h3>
+	<h2 class="empl"><?php echo $greeting.$employee['name'];?></h3>
 	<h3 class="empl">Your last login was on <?php echo $employee['history']; ?></h3>
 	<h3 class="empl">Your details are as follows</h3>
 	

@@ -19,12 +19,13 @@ function dbConnectI()
 
 function idExists($uname,$conn)
 {
-	$query = "select count(*) from sachin_employee 
-	 where username='$uname'";
+	$query = "select count(*) from sachin_employee,sachin_admin
+	 where sachin_employee.username='$uname'
+	 or sachin_admin.username='$uname'";
 	 
 	 $result =mysql_query($query,$conn) or die("Could not run query");
 	$count = mysql_result($result,0,0);
-	if($count==1)
+	if($count>0)
 		return true;
 	else
 		return false;

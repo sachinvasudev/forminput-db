@@ -11,13 +11,27 @@ else
 	if (isset($_POST['submit'])) 
 			
 			{
-				$username=addslashes(htmlspecialchars($_POST['Username']));
-				$password=md5($_POST['Password']);
-				$name=addslashes(htmlspecialchars($_POST['Name']));
-				$age=$_POST['Age'];
-				$occpn=addslashes($_POST['occupation']);
-				$addrs=addslashes((nl2br(htmlspecialchars($_POST['address']))));
-				$status = $_POST['status'];
+				if(get_magic_quotes_gpc())
+				{
+					$username=(htmlspecialchars($_POST['Username']));
+					$password=md5($_POST['Password']);
+					$name=(htmlspecialchars($_POST['Name']));
+					$age=$_POST['Age'];
+					$occpn=($_POST['occupation']);
+					$addrs=((nl2br(htmlspecialchars($_POST['address']))));
+					$status = $_POST['status'];
+				}
+			else {
+					$username=addslashes(htmlspecialchars($_POST['Username']));
+					$password=md5($_POST['Password']);
+					$name=addslashes(htmlspecialchars($_POST['Name']));
+					$age=$_POST['Age'];
+					$occpn=addslashes($_POST['occupation']);
+					$addrs=addslashes((nl2br(htmlspecialchars($_POST['address']))));
+					$status = $_POST['status'];
+	  			 }
+				
+				
 				
 				$con = dbConnect();
 				
@@ -46,6 +60,16 @@ else
 				
 
 			}
+else 
+{
+	$username="";
+	$password="";
+	$name="";
+	$age="";
+	$occpn="";
+	$addrs="";
+	$status = "";
+}
 
 ?>
 <html>
@@ -63,7 +87,7 @@ else
 						Username
 					</p></td>
 					<td>
-					<input type="text" maxlength="40" id="username" name= "Username"/>
+					<input type="text" maxlength="40"  value="<?php echo $username;?>" id="username" name= "Username"/>
 					</td>
 				</tr>
 				
@@ -83,7 +107,7 @@ else
 						Name
 					</p></td>
 					<td>
-					<input type="text" maxlength="40" id="name" name= "Name"/>
+					<input type="text" maxlength="40" value="<?php echo $name;?>" id="name" name= "Name"/>
 					</td>
 				</tr>
 				
@@ -93,23 +117,24 @@ else
 						Age
 					</p></td>
 					<td>
-					<input type="text" class="num" maxlength="3" size="20" name="Age"/>
+					<input type="text" class="num" value="<?php echo $age;?>" maxlength="3" size="20" name="Age"/>
 					</td>
 				</tr>
 				
 				<tr>
 					<td>
-					<p  class="toptext">
-				Occupation
-			</p></td>
+						<p  class="toptext">
+							Occupation
+						</p>
+					</td>
 					<td>
-					<select id="occupation" name="occupation">
-				<option value="">-Select-</option>
-				<option value="Doctor">Doctor</option>
-				<option value="Engineer">Engineer</option>
-				<option value="Teacher">Teacher</option>
-				<option value="Lawyer">Lawyer</option>
-			</select>
+						<select id="occupation" name="occupation">
+							<option value="">-Select-</option>
+							<option value="Doctor">Doctor</option>
+							<option value="Engineer">Engineer</option>
+							<option value="Teacher">Teacher</option>
+							<option value="Lawyer">Lawyer</option>
+						</select>
 					</td>
 				</tr>
 				
@@ -123,7 +148,7 @@ else
 				
 				
 				<td>
-					<textarea id="address" name="address" rows="5" cols="25"></textarea>
+					<textarea id="address" name="address" rows="5" cols="25"><?php echo $addrs;?></textarea>
 					
 				</td>
 				
@@ -150,8 +175,8 @@ else
 						<input type="reset" value"Reset" name="reset"/>
 						<input type="submit" value="Submit" name="submit"/>
 						<a href="index.php">
-		<button type="button">Home</button>
-	</a>
+							<button type="button">Home</button>
+						</a>
 						
 					</td>
 					
