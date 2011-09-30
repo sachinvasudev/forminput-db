@@ -56,7 +56,7 @@ if(isset($_POST['edit']))
 	
 	foreach($delete as $val)
 	{
-		$query2.="DELETE FROM employee where username = '$val';";
+		$query2.="DELETE FROM sachin_employee where username = '$val';";
 	}
 	echo $query2.'<br/>';
 	if($query2!="")

@@ -7,6 +7,45 @@ else
 		echo "<div style='text-align:center;color:red;font-size:24px'>Fatal Error. Contact Webmaster</div>";
 		die();
 	}
+	
+	if (isset($_POST['submit'])) 
+			
+			{
+				$username=addslashes(htmlspecialchars($_POST['Username']));
+				$password=md5($_POST['Password']);
+				$name=addslashes(htmlspecialchars($_POST['Name']));
+				$age=$_POST['Age'];
+				$occpn=addslashes($_POST['occupation']);
+				$addrs=addslashes((nl2br(htmlspecialchars($_POST['address']))));
+				$status = $_POST['status'];
+				
+				$con = dbConnect();
+				
+				
+				
+				
+			
+				if(idExists($username,$con))
+				{
+					echo "<div class='error'>Username '$username' already taken</div>";
+				}
+				else
+					{
+						$query = "INSERT INTO sachin_employee (username,password,name,age,occupation,address,status)
+						 VALUES
+(						 '$username','$password','$name','$age','$occpn','$addrs','$status')";
+
+				mysql_query($query,$con) or die("Could not run query");
+				
+				mysql_close($con);
+				header('Location: view.php');
+				exit();
+						
+					}
+				
+				
+
+			}
 
 ?>
 <html>
@@ -128,44 +167,7 @@ else
 			</form>
 			
 			<?php
-			if (isset($_POST['submit'])) 
 			
-			{
-				$username=addslashes(htmlspecialchars($_POST['Username']));
-				$password=md5($_POST['Password']);
-				$name=addslashes(htmlspecialchars($_POST['Name']));
-				$age=$_POST['Age'];
-				$occpn=addslashes($_POST['occupation']);
-				$addrs=addslashes((nl2br(htmlspecialchars($_POST['address']))));
-				$status = $_POST['status'];
-				
-				$con = dbConnect();
-				
-				
-				
-				
-			
-				if(idExists($username,$con))
-				{
-					echo "<div class='error'>Username '$username' already taken</div>";
-				}
-				else
-					{
-						$query = "INSERT INTO employee (username,password,name,age,occupation,address,status)
-						 VALUES
-(						 '$username','$password','$name','$age','$occpn','$addrs','$status')";
-
-				mysql_query($query,$con) or die("Could not run query");
-				
-				mysql_close($con);
-				header('Location: view.php');
-				exit();
-						
-					}
-				
-				
-
-			}
 		?>
 
 			

@@ -3,8 +3,8 @@
 function dbConnect()
 {
 		
-	$db = mysql_connect("localhost","root","") or die('Could not connect to db');
-	mysql_select_db("form2") or die('Could not select databse');
+	$db = mysql_connect("cmm.local","training","train@CMM") or die('Could not connect to db');
+	mysql_select_db("training") or die('Could not select databse');
 	return $db;
 
 
@@ -12,14 +12,14 @@ function dbConnect()
 
 function dbConnectI()
 {
-	$db = mysqli_connect("localhost","root","") or die('Could not connect to db');
+	$db = mysqli_connect("cmm.local","training","train@CMM") or die('Could not connect to db');
 	mysqli_select_db($db,"form2") or die('Could not select databse');
 	return $db;
 }
 
 function idExists($uname,$conn)
 {
-	$query = "select count(*) from employee 
+	$query = "select count(*) from sachin_employee 
 	 where username='$uname'";
 	 
 	 $result =mysql_query($query,$conn) or die("Could not run query");
@@ -36,12 +36,12 @@ function login_check($uname,$pass,$type,$conn)
 {
 	if($type=="employee")
 	$query = "SELECT COUNT(*)
-			  FROM employee
+			  FROM sachin_employee
 			  WHERE username='$uname'
 		      AND password ='$pass'";
 	else if($type=="admin")
 	$query = "SELECT COUNT(*)
-			  FROM admin
+			  FROM sachin_admin
 			  WHERE username='$uname'
 		      AND password ='$pass'";
 	
@@ -58,7 +58,7 @@ function login_check($uname,$pass,$type,$conn)
 function getEmployees($conn)
 {
 	$query = "SELECT * 
-FROM employee
+FROM sachin_employee
 ORDER BY name 
 ";
 
@@ -75,7 +75,7 @@ function addEmployees($empArray,$conn)
 function getEmployee($uname,$conn)
 {
 	$query = "SELECT * 
-	FROM employee
+	FROM sachin_employee
 	WHERE username='$uname'
 	";
 	
@@ -104,7 +104,7 @@ function updateHistory($uname,$conn)
 	$date = date("YmdHis");
 	
 	
-	$query = "UPDATE employee
+	$query = "UPDATE sachin_employee
 	SET history = '$date'
 	WHERE username='$uname'";
 	mysql_query($query,$conn) or die(mysql_error());
@@ -114,7 +114,14 @@ function updateHistory($uname,$conn)
 
 function redirect($where)
 {
-	$type = $_SESSION['type'];
+	
+
+	if(isset($_SESSION['type']))
+		$type = $_SESSION['type'];
+	else {
+		$type=NULL;
+	}
+	
 	switch($where)
 	{
 		case "homepage":

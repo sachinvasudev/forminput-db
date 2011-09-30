@@ -74,7 +74,7 @@ if(isset($_POST['search']))
 {
 	$searchString = $_POST['query'];
 	$query = "SELECT *
-FROM employee
+FROM sachin_employee
 WHERE name LIKE '%$searchString%'
 OR username LIKE'$searchString%'
 OR address LIKE '%$searchString%'
@@ -84,7 +84,7 @@ ORDER BY name
 }
 else		
 $query = "SELECT * 
-FROM employee
+FROM sachin_employee
 order by name
 ";
 
