@@ -157,3 +157,13 @@ div.error
 	font-family: Verdana;
 	font-size:17px;
 }
+
+span.error
+{
+	text-align:center;	
+    font-weight:bold;
+	color:red;
+	font-family: Verdana;
+	font-size:12px;
+	
+}

@@ -1,4 +1,36 @@
+function checkUsername(element)
+{
+	var username = element.value;
+	
+	var req = new XMLHttpRequest();
 
+
+	
+	req.open("POST","register.php",true);
+	req.onreadystatechange = function ()
+	{
+		if(req.readyState==4&&req.status==200)
+	{
+		
+		if(req.responseText==1)
+			document.getElementById("uTaken").innerHTML='Username already taken';
+		else 
+			document.getElementById("uTaken").innerHTML='';	
+		
+		
+		
+
+			
+		
+	} 
+	
+		
+	}
+	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	req.send("checkUname="+username);
+	
+}
 
 function validate2() 
 {
@@ -46,6 +78,10 @@ function validate2()
 	
 	if(!checkStatus())
 		message += "Status\n";
+	
+	
+	if(document.getElementById("uTaken").innerHTML!="")
+		message += "Different username(already taken)\n";
 	message += " ";
 
 	if(message == "Please enter:\n\n ")

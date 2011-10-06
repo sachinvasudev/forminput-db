@@ -8,6 +8,23 @@ else
 		die();
 	}
 	
+	$con = dbConnect();
+	
+	if(isset($_POST['checkUname']))
+	{
+		$username= $_POST['checkUname'];
+		
+		if(idExists($username,$con))
+		echo 1;
+		else echo 2;
+		
+		
+		
+		exit;
+		
+	}
+	
+	
 	if (isset($_POST['submit'])) 
 			
 			{
@@ -33,7 +50,7 @@ else
 				
 				
 				
-				$con = dbConnect();
+				
 				
 				
 				
@@ -87,8 +104,14 @@ else
 						Username
 					</p></td>
 					<td>
-					<input type="text" maxlength="40"  value="<?php echo $username;?>" id="username" name= "Username"/>
+					<input type="text" onchange="checkUsername(this)" maxlength="40"  value="<?php echo $username;?>" id="username" name= "Username"/>
+					
 					</td>
+					
+				</tr>
+				<tr>
+					<td></td>
+					<td><span id="uTaken" class="error"></span></td>
 				</tr>
 				
 				<tr>
