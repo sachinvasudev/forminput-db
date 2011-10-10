@@ -13,9 +13,16 @@ function checkUsername(element)
 	{
 		
 		if(req.responseText==1)
+		{
 			document.getElementById("uTaken").innerHTML='Username already taken';
+			document.getElementById("uTaken").setAttribute("class","error");
+		}
 		else 
-			document.getElementById("uTaken").innerHTML='';	
+		{
+			
+			document.getElementById("uTaken").innerHTML='Username available';
+			document.getElementById("uTaken").setAttribute("class","error_green");	
+		}
 		
 		
 		
@@ -80,7 +87,7 @@ function validate2()
 		message += "Status\n";
 	
 	
-	if(document.getElementById("uTaken").innerHTML!="")
+	if(document.getElementById("uTaken").innerHTML!="Username available")
 		message += "Different username(already taken)\n";
 	message += " ";
 

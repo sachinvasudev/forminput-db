@@ -158,11 +158,23 @@ div.error
 	font-size:17px;
 }
 
+
+
 span.error
 {
 	text-align:center;	
     font-weight:bold;
 	color:red;
+	font-family: Verdana;
+	font-size:12px;
+	
+}
+
+span.error_green
+{
+	text-align:center;	
+    font-weight:bold;
+	color:green;
 	font-family: Verdana;
 	font-size:12px;
 	
