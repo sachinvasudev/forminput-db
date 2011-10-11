@@ -14,13 +14,52 @@
     	{
     		dateFormat: 'dd-mm-yy',
     		beforeShow: update,
-    		constrainInput: true
+    		constrainInput: true,
+    		onSelect: search
     	    		
     	});
     	
     	$("#startDate").focus();
     
   });
+  
+  
+function search()
+{
+	
+	var req = new XMLHttpRequest();
+	var startDate = $("#startDate").val();
+	var endDate = $("#endDate").val();
+	alert(startDate);
+	return;
+
+
+	
+	req.open("POST","datesearch.php",true);
+	req.onreadystatechange = function ()
+	{
+		if(req.readyState==4&&req.status==200)
+	{
+		
+		
+		
+		
+		
+
+			
+		
+	} 
+	
+		
+	}
+	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	req.send("checkUname="+username);
+	
+	
+	
+	
+}
   
 function update()
 {
